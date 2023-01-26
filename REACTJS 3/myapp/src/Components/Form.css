@@ -1,0 +1,18 @@
+
+form{
+    background-color: darkcyan;
+    border: 3px solid blue ;
+    text-align:left ;
+    padding: 40px ;
+}
+
+.title , .date , .price {
+    margin:10px ;
+    color:white ;
+    font-size: 20px ;
+}
+
+.submit{
+    float: left;
+    margin:10px 
+}

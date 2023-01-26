@@ -1,0 +1,26 @@
+
+{
+    "blogs":[
+        { 
+            "title":"First blog",
+            "body":"written something " , 
+            "author":"ash", 
+            "id":1
+        },
+        {   "title":"Second blog",
+            "body":"written something " ,
+            "author":"ram", 
+            "id":2
+        },
+        {   "title":"Third blog", 
+            "body":"written something " , 
+            "author":"arjun", 
+            "id":3
+        },
+        {   "title":"Fourth blog", 
+            "body":"written something " , 
+            "author":"raju",
+            "id":4
+        } 
+    ]
+}
