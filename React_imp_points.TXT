@@ -1,0 +1,1885 @@
+* React ek open source library hai.
+
+* Libraries provide developers with predefined functions and classes to make their work easier and boost the development process.
+
+* Both libraries and frameworks are reusable code written by someone else. 
+
+* A framework inverts the control of the program. It tells the developer what they need. A library doesn’t
+
+* facebook has developed react 
+
+------------------- TUT 2 ( create project )
+
+* ctrl+j - hide / show terminal 
+
+* npm - node package model. npm packages use karnyasathi pahila aplyala install karavch lagat. 
+* npx - node package runner . npx packages install karaychi garaj nahiye. without install krta hi apn packages use kru shakto
+
+* setup new project - 
+'npm init react-app myapp'. 
+
+[ myapp (folder name) navach folder banel ani tyat sagle node modules and src file vagaire create hoil automatically. ]
+
+* to run the app - head to the myapp folder nd run 'npm start'
+
+------------------- TUT 3 ( DOM n virtual DOM )
+
+document - html document
+object - elements like h1 , body , title tag
+model - complete document 
+
+virtual DOM - its a copy of current existing DOM
+
+------------------- TUT 5 ( JSX )
+
+* imr + enter - import React from 'react'
+* clg         - console.log()
+* rfce        - function component 
+* rce         - class component 
+
+
+* jsx - javascript XML
+
+
+*  return (
+    <div className="App">
+      <h1>Ashutosh</h1>
+    </div>
+  );
+* return function me jo html hai use hi jsx bolte hai
+
+* creating function 
+const func = function( )
+{
+  alert("hello ASH ! " )
+}
+
+*calling function in return function by clicking a button 
+<button onClick={func}>greet </button>
+
+* parameterized function
+const func = function(a )
+{
+  alert("hello ASH ! your age is "+ a )
+}
+
+* calling parameterized function
+<button onClick={ function(){ func(20000) } }>greet </button>
+
+
+----------------- Some basic concepts in Reactjs ( thapa technical se kiya hua hai ) ----------------------- 
+
+
+*just go throught the code you will get it 
+
+import './App.css';
+
+function App() {
+
+  const fname = "Ashutosh";
+  const lname = "Birajdar";
+
+  // current full date
+  const d = new Date();
+  const day = d.getDate();
+  const month = d.getMonth()+1;
+  const year = d.getFullYear();
+
+  // current time 
+  const hr = d.getHours();
+  const min = d.getMinutes();
+  const sec = d.getSeconds();
+
+  // you can use directly a function too
+  const fulldate = d.toLocaleDateString();
+  const fulltime = d.toLocaleTimeString();
+
+  //anchor tag
+  const linkForInsta = "https://www.instagram.com/";
+
+
+  // Inline css 
+  const css = {
+    color : 'red' ,
+    backgroundColor : 'yellow' ,
+    textAlign : 'center' ,
+    padding : '40px 20px 5px 5px'
+  }
+
+  return (
+    <div className="App">
+
+      {/* Javascript expressions in JSX */}
+      <div className="block">
+        <h1>My name is {fname} my lucky number is {2+3} . A random number - {Math.random()} </h1>
+      </div>
+
+
+      {/* Template literals - same format madhe lihnyasathi as lihtat */}
+      <div className="block">
+        <h1>{`My name is ${fname} ${lname}` }</h1>
+      </div>
+
+      {/* printing current date and time  */}
+      <div className="block">
+        <p>{`Current date is : ${day}-${month}-${year}`}</p>
+        <p>current date is : {fulldate}</p>
+
+        <p>{`Current time is : ${hr} hrs : ${min} mitues : ${sec} seconds`}</p>
+        <p>current time is : {fulltime}</p>
+      </div>
+
+      {/*JSX attributes - src ani alt  attributes ahet*/}
+      <div className="block">
+        <img className="Image" src="https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg" alt="tree image" />
+
+        <a href={linkForInsta} target="_insta" >
+          <img className="Image" src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="insta" />
+        </a>
+      </div>
+
+
+      {/* Adding google fonts */}
+      <div className="fontblock">
+          1st we have to add the link of font into the head section of index.html page and then in css stylesheet paste the font-family line from website to the particular class 
+      </div>
+
+
+      {/* Inline css */}
+      <div className="block">
+        <h1>Inline css tutorial</h1>
+        <p  style={css}>We have to create a variable which will be an object type. write the properties in camel case. the values of properties should be in string format only. there should be , between more than 1 properties and value pair . and add style attribute to the tag variableName should be in curly braces as value </p>
+      </div>
+       
+
+      
+    
+
+    </div>
+  );
+}
+
+export default App;
+
+
+* Css part for above js is below 
+
+
+.block{
+  border: 2px solid black;
+  padding: 10px ;
+  margin: 5px;
+  
+}
+
+.fontblock{
+  border: 2px solid black;
+  padding: 10px;
+  margin: 5px;
+  font-family: 'Josefin Slab', serif;
+}
+
+.Image{
+ 
+  width: 200px ;
+  height : 200px ;
+  margin: 10px;
+
+}
+
+-------------Import and export ( thapa technical yt ) 
+
+* you can import and export anything like whole function , variable or anything from other components
+
+*in Variable.jsx component
+
+const hero = "Arjun";
+const god = 'Krishna';
+
+function shlok(){
+
+    return (<div>Narayanam namskrityam naram chaiv narottamam devi sarswati vyasam tato jay mudiryet</div>);
+}
+
+export { shlok , god , hero } ;
+*function export krtana () nahi lavaych but jithe import krtay tithe () use karavch lagt
+*variable vagaira function chya baherch asaylla pahije
+
+
+*in App.js 
+
+import * as imp from './Components/Variable';  //  saglch import krt , je je tikde export kelay at once 
+
+function App() {
+  return (
+    <div className="App">
+
+      <h1>The hero of mahabharat is : {imp.hero}</h1>  // as imp mhanlay mhanun imp. vaprun access karav lagat
+      <h1>the God of mahabharat is  : {imp.god} </h1>
+      the first shlok of MB : {imp.shlok()} 
+      
+    
+    </div>
+  );
+}
+
+export default App;
+
+
+
+------------------- TUT 6 ( components and types )
+
+* Always start component names with a capital letter.
+
+* 2 types of components 1) functional and 2) class components
+
+* functional component 
+these are basic javascript functions 
+ui design krna hai to functional components are best.
+
+// into header.js file 
+function Header()
+{
+    return <h1>hello functional components</h1>
+}
+export default Header;
+
+// into app.js
+import Header from './components/Header';
+function App() {
+  return (
+    <div className="App">
+    <Header/>
+    </div>
+  );
+}
+export default App;
+
+
+* Class component 
+
+// into cheader.js file 
+import react from 'react'
+class Cheader extends react.Component{
+    render(){
+        return <h1>Hello class components </h1>
+    }
+}
+
+export default Cheader
+// into App.js file 
+import Cheader from './components/Cheader';
+function App() {
+  return (
+    <div className="App">
+    <Cheader></Cheader>
+    </div>
+  );
+}
+export default App;
+
+
+------------------- TUT 9 ( Props )
+
+
+* props in functional component
+// into header.js
+function Header(p)
+{
+    return <h1>hello {p.name}-{p.last}</h1>
+}
+export default Header;
+
+// into app.js
+import Header from './components/Header';
+function App() {
+  return (
+    <div className="App">
+    <Header name="ashutosh" last="birajdar"/>
+    </div>
+  );
+}
+export default App;
+
+* the p as a parameter given to the function is called props ( properties )
+* name and last are propeties of that header component 
+* functional components ko bheja jata hai props from another components
+* we cant change value of props in component 
+
+
+* props in class component
+// into Cheader.js
+import react from 'react'
+class Cheader extends react.Component{
+    render(){
+        return <h1>Hello {this.props.name}- {this.props.last} </h1>
+    }
+}
+export default Cheader
+
+// into app.js
+import Cheader from './components/Cheader';
+function App() {
+  return (
+    <div className="App">
+    <Cheader name='Arjun' last='kourav'/>
+    </div>
+  );
+}
+export default App;
+
+
+------------------- TUT 11 ( state )
+
+* states are managed in the component. state can be changed 
+* useState hook - functional component 
+* this.state - class component 
+
+* Props are immutable i.e. once set the props cannot be changed, while State is an observable object that is to be used to hold data that may change over time and to control the behavior after each change.
+
+
+------------------- TUT 12 ( Hooks )
+
+* Hooks can only be called inside React function components.
+Hooks can only be called at the top level of a component.
+Hooks cannot be conditional
+
+* useState hook 
+import {useState} from 'react';
+function App() {
+
+  const [color , setColor]  = useState('red')
+  return (
+    <div className="App">
+       <h1>color is {color}</h1>
+       <button onClick={function(){ setColor('blue') }}> change </button>
+    </div>
+  );
+}
+export default App;
+
+
+
+* Changing the value of title according to input 
+
+import {useState} from 'react'
+import './Expense.css'
+export default function Expense(props) {
+    const [title , setTitle] = useState(props.title)
+    const [newTitle , setNewTitle] = useState('')
+
+    function changeHandler( event )
+    {
+        setNewTitle(event.target.value)
+    }
+
+    function clickHandler( )
+    {
+        setTitle(newTitle)
+    }
+
+  return (
+    <div>
+        <h3>
+        <input type="text" value={newTitle} onChange={changeHandler} />
+        <button onClick={clickHandler}> change title </button>
+        </h3>
+    </div>
+  )
+}
+
+
+* Counter by click
+
+import { useState } from "react";
+
+function App() 
+{
+  const [count, setCount] = useState(0);
+
+  function inc()
+  {
+    setCount(count+10)
+  }
+  return (
+    <div className="App">
+
+        <h1>{count}</h1>
+        <button onClick={inc}>Click me</button>
+
+    </div>
+  );
+}
+export default App;
+
+
+
+* update time with click and by refreshing page too
+
+import { useState } from "react";
+
+function App() {
+
+  const curtime = new Date().toLocaleTimeString();
+  const [time, setCount] = useState( curtime );
+
+  function inc() {
+    let cur = new Date().toLocaleTimeString(); 
+    setCount( cur );
+  }
+  return (
+    <div className="App">
+
+      <h1>{ time }</h1>
+      <button onClick={inc}>update</button>
+
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+* update time every second 
+
+import "./App.css";
+import { useState } from "react";
+
+function App() {
+
+  const curtime = new Date().toLocaleTimeString();
+  const [time, setCount] = useState( curtime );
+
+  function updateTime() {
+    let cur = new Date().toLocaleTimeString(); 
+    setCount( cur );
+  }
+
+  // we have to call function every second so use setInterval() function 
+  setInterval( updateTime , 1000 );
+
+  return (
+    <div className="App">
+
+      <h1>{ time }</h1>
+    
+    </div>
+  );
+}
+export default App;
+
+
+
+
+------------------- TUT 15 (fragment)
+
+* Fragment is used to group the list of elements without creating an extra div
+
+* just import the fragment component from react and use <Fragment> </Fragment> tag instead of the extra div tag
+
+function App() {
+  return(
+    <>
+       <h1>color</h1>
+       <button onClick={change}> nothing </button>
+    </>
+  );
+}
+
+
+------------------- TUT 16 ( Lists )
+
+
+function App() {
+  const list = [1,2,3,4,5,6]
+  const nn = list.map( function(l){
+    return <h1>{l}</h1>
+  })
+
+  return(
+    <>
+       <h1>{nn}</h1>
+    </>
+      
+  );
+}
+
+
+------------------- TUT 17 ( styling css using react )
+
+* EXTERNAL CSS 
+
+// into style.css 
+.demo{
+    color : white;
+}
+.clr{
+    font-size: 150px;
+}
+.bg{
+    background-color: black;
+}
+
+
+// into Stylesheet.js 
+import './Style.css'
+const Stylesheet = (p) => {
+    const cls = p.cls
+    return ( 
+        <div className={`${cls} clr bg`}>
+            hello stylesheet 
+        </div>
+    );
+}
+export default Stylesheet;
+
+// into app.js 
+import Stylesheet from './components/Stylesheet'
+function App() {
+  return(
+   <div>
+      <Stylesheet cls="demo"/>
+   </div>
+  );
+}
+export default App;
+
+
+* INLINE CSS 
+
+//into inline.js
+function Inline() {
+    const css ={
+        color:'blue',
+        fontSize:'138px'
+    }
+  return (
+    <div style={css}>hello inline css</div>
+  )
+}
+export default Inline
+
+// into app.js
+import Inline from './components/Inline'
+function App() {
+  return(
+   <div>
+      <Inline/>
+   </div>
+  );
+}
+export default App;
+
+
+------------------- TUT 23 ( routing in react )
+
+* first install a dependency in working folder obviously
+'npm i react-router-dom@5'
+OR
+'npm install react-router-dom localforage match-sorter sort-by'
+.json file me dependency me react router dom aya hoga
+
+
+* visit 'react router' website 
+
+in index.js
+* import {BrowserRouter} from 'react-router-dom' 
+* replace <React.StrictMode> with <BrowserRouter>
+
+
+in Header.js
+* import {Link} from 'react-router-dom' 
+
+<Link className='nav-link active' to='/'> Home </Link>
+<Link className='nav-link active' to='/About'> About </Link>
+<Link className='nav-link active' to='/Contact'> Contact </Link>
+
+in App.js 
+* import { Routes , Route } from 'react-router-dom';
+* in return() 
+<Routes>
+  <Route path="/" element={ <Home/> } />
+  <Route path="Contact" element={ <Contact/> } />
+  <Route path="About" element={ <About/> } />
+</Routes>
+
+------------------- TUT 25 ( Api fetch )
+
+
+  fetch('paste url here').then( res=>res.json ).then(data=>{ console.log(data) })
+
+
+------------------- TUT 26 ( bootstrap with react )
+
+to add bootstrap in react add
+in index.html file of public folder add bootstrap css link in head section
+in same file add bootstrap js link at the end of body section 
+
+2 folders banane hai src me ek components and dusra hoga pages 
+
+
+
+
+
+
+
+
+
+
+
+------------------- thapa technical ( props ) 
+
+// App.js
+
+import './App.css';
+import Card from './Components/Card';
+
+function App() {
+  return (
+    <div className="App">
+
+      <div className="cardblock">
+
+          <Card 
+          title = "Mahanayak Arjun"
+          imglink = "https://qph.cf2.quoracdn.net/main-qimg-3ac1bac314562f7068424c091fe62b4d-lq"
+          info = "The greatest Archer in the world"
+          />
+        
+      </div>
+
+      <div className="cardblock">
+
+          <Card 
+          title = "Parmatma Shree Krishna"
+          imglink = "https://i.pinimg.com/originals/7b/fd/07/7bfd07f76a4667cb9514a754f646dd07.jpg"
+          info = "The Supreme god"
+        />
+        
+      </div>
+
+      <div className="cardblock3">
+
+          <Card 
+          title = "Mahabali Bheem"
+          imglink = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/17d3942e-ea87-48af-9961-744b59e9b12b/d6baefr-ae2ae25e-04b1-414c-b4cb-2e4d8590143f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzE3ZDM5NDJlLWVhODctNDhhZi05OTYxLTc0NGI1OWU5YjEyYlwvZDZiYWVmci1hZTJhZTI1ZS0wNGIxLTQxNGMtYjRjYi0yZTRkODU5MDE0M2YuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ERXQt6ZvQdXGQyjZyyZg_fXI2H1nWo9Y6mpAUkPSEow"
+          info = "The greatest wrestler in the world"
+        />
+        
+      </div>
+        
+    </div>
+  );
+}
+
+export default App;
+
+
+
+// App.css 
+
+
+.App{
+  width: auto;
+  margin: 20px ;
+  height: 100%;
+  display: flex;
+  text-align: center;
+  background-color: rgb(9, 188, 248);
+  justify-content: center;
+}
+
+.cardblock{
+  float: left;
+  width: 30%;
+}
+
+.cardblock3{
+  float: left;
+  width: 33%;
+}
+
+
+// Card.js
+
+import "../CSS/card.css";
+
+
+function Card(props) {
+  return (
+    <>
+        <div className="Card">
+            <div className="cardtitle">
+                <h1>{props.title}</h1>
+            </div>
+            <div className="cardimg">
+                <img src={props.imglink} alt="" />
+            </div>
+            <div className="cardinfo">
+                <h3>{props.info}</h3>
+            </div>
+            <button className="btn">choose</button>
+        </div>
+
+    </>
+    
+  )
+}
+export default Card
+
+
+// card.css
+
+
+.Card{
+    background-color: burlywood;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 30px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 20px;
+}
+.cardtitle{
+    color: red;
+}
+
+img{
+    width: 250px ;
+    height: auto;
+}
+
+.cardinfo{
+    color: indigo;
+}
+
+.btn{
+    background-color: blue;
+    font-size: larger;
+    border-radius: 10px;
+    color: white;
+}
+
+
+
+---------------------------------  ARRAY and accessing array elements IN REACTJS
+
+
+// App.js
+
+import './App.css';
+
+import Card from './Components/Card';
+import data from "./Components/data";
+
+function cardarr( i )
+{
+  return(
+      <Card 
+        title = {i.title}
+        imglink = {i.imglink}
+        info = {i.info}
+      />
+  )
+}
+
+function App() {
+  return(
+    <div className="App">
+
+      <div className="cardblock">
+
+        { data.map( cardarr ) }
+        
+      </div>
+
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+// data.js
+
+
+
+const data = [
+    {
+        title : "Mahanayak Arjun" ,
+        imglink : "https://qph.cf2.quoracdn.net/main-qimg-3ac1bac314562f7068424c091fe62b4d-lq" ,
+        info : "The greatest Archer in the world"
+    },
+    {
+        title : "Parmatma Shree Krishna",
+        imglink : "https://i.pinimg.com/originals/7b/fd/07/7bfd07f76a4667cb9514a754f646dd07.jpg",
+        info : "The Supreme god"
+    },
+    {
+        title : "Mahabali Bheem" ,
+        imglink : "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/17d3942e-ea87-48af-9961-744b59e9b12b/d6baefr-ae2ae25e-04b1-414c-b4cb-2e4d8590143f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzE3ZDM5NDJlLWVhODctNDhhZi05OTYxLTc0NGI1OWU5YjEyYlwvZDZiYWVmci1hZTJhZTI1ZS0wNGIxLTQxNGMtYjRjYi0yZTRkODU5MDE0M2YuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ERXQt6ZvQdXGQyjZyyZg_fXI2H1nWo9Y6mpAUkPSEow" ,
+        info : "The greatest wrestler in the world"
+    },
+
+]
+
+
+export default data;
+
+// card.js
+
+import "../CSS/card.css";
+
+
+function Card(props) {
+  return (
+    <>
+        <div className="Card">
+            <div className="cardtitle">
+                <h1>{props.title}</h1>
+            </div>
+            <div className="cardimg">
+                <img src={props.imglink} alt="" />
+            </div>
+            <div className="cardinfo">
+                <h3>{props.info}</h3>
+            </div>
+            <button className="btn">choose</button>
+        </div>
+
+    </>
+    
+  )
+}
+export default Card
+
+// App.css
+
+
+.App{
+  width: auto;
+  margin: 20px ;
+  height: 100%;
+  display: flex;
+  text-align: center;
+  background-color: rgb(9, 188, 248);
+  justify-content: center;
+}
+
+.cardblock{
+  float: left;
+  width: 30%;
+}
+
+.cardblock3{
+  float: left;
+  width: 33%;
+}
+
+// card.css 
+
+
+.Card{
+    background-color: burlywood;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 30px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 20px;
+}
+.cardtitle{
+    color: red;
+}
+
+img{
+    width: 250px ;
+    height: auto;
+}
+
+.cardinfo{
+    color: indigo;
+}
+
+.btn{
+    background-color: blue;
+    font-size: larger;
+    border-radius: 10px;
+    color: white;
+}
+
+
+------------------------------------ map function in JS            
+
+
+const num = [ 10 , 20 , 30 , 40 , 50 , 60 ];
+
+num.map( (i , index ) => {
+    return (
+        // jo bhi return karna hai idhar kro 
+        console.log(i + " ka index hai "+ index)
+    )
+})
+
+----------------------------------  if else in Reactjs
+
+import './App.css';
+import Card from './Components/Card';
+import data from "./Components/data";
+
+
+const Propagonist = 'Arjun';
+
+const choose = ()=>{
+  if( Propagonist==='Arjun'){
+    return(
+      <Card 
+        title = {data[0].title}
+        imglink = {data[0].imglink}
+        info = {data[0].info}
+      />
+    )
+  }
+  else{
+      return(
+      <Card 
+        title = {data[1].title}
+        imglink = {data[1].imglink}
+        info = {data[1].info}
+      />
+    )
+  }
+}
+
+function App() {
+  return(
+    <div className="App">
+      <div className="cardblock">
+
+      {choose()}
+        
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+---------------------------------- Object destructuring  
+
+const obj = { a: 1, b: 2 };
+const { a, b } = obj;
+// is equivalent to:
+// const a = obj.a;
+// const b = obj.b;
+
+
+const x = [1, 2, 3, 4, 5];
+const [y, z] = x;
+console.log(y); // 1
+console.log(z); // 2
+
+
+------------------------------------ emoji
+ 
+to use emojis add extension named - :emojisense:
+you can search for its installation process on youttube that how can you add it in vs code 
+
+
+-------------------------------- Handling events in Reactjs
+
+* On hovering over the button change its color and removing cursor over from it revert back the color 
+
+import "./App.css";
+import { useState } from "react";
+
+function App() {
+
+  const color = 'red';
+  const [bg, setBg] = useState( color );
+
+  function ChangeBg() {
+    let newbg = "purple";
+    setBg(newbg);
+  }
+
+  function revert() {
+    let newbg = "red";
+    setBg(newbg);
+  }
+
+  return (
+    <div className="App">
+
+      <button style={{backgroundColor : bg}} onMouseEnter={ChangeBg} onMouseLeave={revert}> button  </button>
+
+    </div>
+  );
+}
+export default App;
+
+// for more events in javascript check on website or internet 
+
+
+------------------------------ Forms in reactjs 
+
+import "./App.css";
+import { useState } from "react";
+
+function App() {
+
+  const [ enteredName, setEnteredName ] = new useState("");
+  const [ name , setName ] = new useState("");
+  
+  function entering( event ){
+    setEnteredName( event.target.value )
+  }
+
+  function onSubmit(){
+    setName( enteredName )
+  }
+
+  return (
+    <div className="App">
+      <h1> Hello ! {name}</h1>
+
+      <input
+        type="text"
+        placeholder="Enter your name !"
+        onChange={entering}
+        value={enteredName}
+      />
+      {/* onChange jb entering Fn ko call krega to enteredName ki value update hogi. value attribute me jo bhi enteredName me value ayi h wo store hoga. and then onSubmit Fn Name ki value update krega  */}
+
+      <button onClick={onSubmit}> submit</button>
+    </div>
+  );
+}
+export default App;
+
+
+
+----------------------------------- login form with firstname n lastname
+
+
+import "./App.css";
+import { useState } from "react";
+
+function App() {
+  const [enteredName, setEnteredName] = new useState("");
+  const [name, setName] = new useState("");
+
+
+  const [enteredLastName, setEnteredLastName] = new useState("");
+  const [lname, setLName] = new useState("");
+
+
+
+  function enteringFirstname(event) {
+    setEnteredName(event.target.value);
+  }
+
+  function enteringLastname(event) {
+    setEnteredLastName(event.target.value);
+  }
+  
+
+  function onSubmit(e) {
+    // submit kelyavar page refresh hot te na honyasathi preventDefault() function vaprtat 
+    e.preventDefault();
+
+    setName(enteredName);
+    setLName( enteredLastName );
+  }
+  
+
+  return (
+    <div className="App">
+
+
+      <form onSubmit={onSubmit} >
+        <h1> Hello ! {name} {lname}</h1>
+
+        <input
+          type="text"
+          placeholder="Enter your name !"
+          onChange={enteringFirstname}
+          value={enteredName}
+        />
+
+        <input
+          type="text"
+          placeholder="Enter your Lastname !"
+          onChange={enteringLastname}
+          value={enteredLastName}
+        />
+
+        <button onClick={onSubmit}>submit</button>
+      </form>
+      
+      
+    </div>
+  );
+}
+export default App;
+
+
+
+----------------------------  handling multiple input fields in form reactjs
+
+
+import "./App.css";
+import { useState } from "react";
+
+function App() {
+
+  // we can give an object as initial value in usestate
+  const [fullname, setfullname] = new useState(
+    {
+        fname:"",
+        lname:""
+    }
+  );
+  //we can access those with eg. fullname.fname 
+  
+
+  // sbhi inputs ke liye ekhi fn use kiya hai dhyan se dekh lijiye ekbar 
+  function input( e ) {
+    
+    // value variable me jo bhi input diya hai wo value ayegi
+    const value = e.target.value;
+
+    // name attribute ki value access krne ke liye name variable
+    const name = e.target.name;
+
+    // previousvalue ek parameter hai setFullname() function ka kuch bhi hoskta hai waise like pv or prev. it gives the previous value stored in that attribute.
+    setfullname( (previousvalue )=>{
+
+      if( name==="fname"){
+        // we should return the updated values 
+        return{
+          fname:value , // set the entered fname 
+          lname:previousvalue.lname // keep as it is bcoz we have entered only fname now 
+        }
+      }
+      else{
+        return{
+          fname:previousvalue.fname , // keep as it is coz we have entered in lname section 
+          lname:value // set the entered lname 
+        }
+      }
+    })
+
+  }
+  
+  // to prevent refreshment of website 
+  function onSubmit(e) 
+  { 
+    e.preventDefault();
+    alert("Form submitted !! ")
+   
+  }
+  
+
+  return (
+    <div className="App">
+      <form onSubmit={onSubmit}>
+        <h1>
+          {" "}
+          Hello ! {fullname.fname} {fullname.lname}
+        </h1>
+
+        {/* name attribute is added so that we can identify the inputs */}
+        <input
+          type="text"
+          placeholder="Enter your first name !"
+          name="fname"
+          onChange={input}
+          value={fullname.fname}
+        />
+        {/* value attribute ki value fullname.fname me store hogi */}
+
+        <input
+          type="text"
+          placeholder="Enter your Lastname !"
+          name="lname"
+          onChange={input}
+          value={fullname.lname}  
+        />
+
+        <button onClick={onSubmit}>submit</button>
+      </form>
+    </div>
+  );
+}
+export default App;
+
+
+
+--------------------------------------  challenge react thapa 40 th vdo 
+
+
+import "./App.css";
+import { useState } from "react";
+
+function App() {
+
+  const [info, setInfo] = new useState(
+    {
+        fname:"",
+        lname:"",
+        mail:"",
+        number:""
+    }
+  );
+  
+  function input( e ) {
+    
+
+    // array destructuring use kiya hai yaha 
+    const { value , name } = e.target;
+
+    setInfo((previousvalue) => {
+      if (name === "fname") {
+        return {
+          fname: value,
+          lname: previousvalue.lname,
+          mail: previousvalue.mail,
+          number: previousvalue.number
+        };
+      } else if (name === "lname") {
+        return {
+          fname: previousvalue.fname,
+          lname: value,
+          mail: previousvalue.mail,
+          number: previousvalue.number,
+        };
+      } else if ((name === "mail")) {
+        return {
+          fname: previousvalue.fname,
+          lname: previousvalue.lname,
+          mail: value,
+          number: previousvalue.number
+        };
+      } 
+      else{
+        return {
+          fname: previousvalue.fname,
+          lname: previousvalue.lname,
+          mail: previousvalue.mail,
+          number: value
+        };
+      }
+    });
+
+  }
+  
+  function onSubmit(e) 
+  { 
+    e.preventDefault();
+    alert("Form submitted !! ")
+   
+  }
+  
+
+  return (
+    <div className="App">
+      <form onSubmit={onSubmit}>
+        <h1>
+          Hello ! {info.fname} {info.lname}
+          <div> Your email is : {info.mail}</div>
+          <div> Your mob no. is : {info.number}</div>
+        </h1>
+
+        <input
+          type="text"
+          placeholder="Enter your first name !"
+          name="fname"
+          onChange={input}
+          value={info.fname}
+        />
+
+        <input
+          type="text"
+          placeholder="Enter your Lastname !"
+          name="lname"
+          onChange={input}
+          value={info.lname}
+        />
+
+        <input
+          type="email"
+          placeholder="Enter your email !"
+          name="mail"
+          onChange={input}
+          value={info.mail}
+        />
+
+        <input
+          type="number"
+          placeholder="Enter your mobile no !"
+          name="number"
+          onChange={input}
+          value={info.number}
+        />
+
+        <button onClick={onSubmit}>submit</button>
+      </form>
+    </div>
+  );
+}
+export default App;
+
+
+
+------------------------------ making above challange easy 
+
+
+import "./App.css";
+import { useState } from "react";
+
+function App() {
+
+  const [info, setInfo] = new useState(
+    {
+        fname:"",
+        lname:"",
+        mail:"",
+        number:""
+    }
+  );
+  
+  function input( e ) {
+    
+
+    // array destructuring use kiya hai yaha 
+    const { value , name } = e.target;
+
+    setInfo((previousvalue) => {
+
+      return{
+        // spread operator 
+        ...previousvalue ,
+        // jo bhi update hua hai yaha [name] me match krega aur sirf usiki value update krega in the object 
+        [name] : value
+      }
+      
+    });
+
+  }
+  
+  function onSubmit(e) 
+  { 
+    e.preventDefault();
+    alert("Form submitted !! ")
+   
+  }
+  
+
+  return (
+    <div className="App">
+      <form onSubmit={onSubmit}>
+        <h1>
+          Hello ! {info.fname} {info.lname}
+          <div> Your email is : {info.mail}</div>
+          <div> Your mob no. is : {info.number}</div>
+        </h1>
+
+        <input
+          type="text"
+          placeholder="Enter your first name !"
+          name="fname"
+          onChange={input}
+          value={info.fname}
+        />
+
+        <input
+          type="text"
+          placeholder="Enter your Lastname !"
+          name="lname"
+          onChange={input}
+          value={info.lname}
+        />
+
+        <input
+          type="email"
+          placeholder="Enter your email !"
+          name="mail"
+          onChange={input}
+          value={info.mail}
+        />
+
+        <input
+          type="number"
+          placeholder="Enter your mobile no !"
+          name="number"
+          onChange={input}
+          value={info.number}
+        />
+
+        <button onClick={onSubmit}>submit</button>
+      </form>
+    </div>
+  );
+}
+export default App;
+
+
+
+--------------------------------------------- Spread operator 
+
+
+
+var arr = [ 1 ,2 , 3,4 , 5, 6 ]
+var brr = [ ...arr]
+
+console.log( arr )
+console.log( brr )
+
+// -------------------------------
+
+var arr = { 1 : 1 , 2 : 2 , 3 : 3 , 4 : 4}
+var brr = { 5 : 5 , ...arr ,  6 : 6   }
+
+
+console.log(arr);
+console.log(brr);
+
+// ---------- Array destructuring 
+
+var arr = [ 1 , 2, 3, 4 , 5 ,6 , 7 ]
+var [ a , b , ...arr ] =  arr 
+
+console.log( a );
+console.log(b);
+console.log(arr);
+// ithe arr chi values change hotil karan apan assign krtoy array destructure krun 
+
+
+
+---------------------------------------- Material UI framework 
+
+its like bootstrap ( copy paste )
+
+
+//go to website name - material ui 
+
+//install packages by hitting command in terminal -
+eg .
+npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/material @mui/styled-engine-sc styled-components
+
+// you can find the links in installation section on website
+
+to use the icons or any other components like navbar card button u just have to search for it in search bar and then copy the import link there from source and paste at the top of page where other import links are there in your project 
+
+and then use it as a Component. 
+eg . <NameOfComponent></NameOfComponent>
+
+
+
+------------------------------------- Install n use Bootstrap in React js 
+
+
+install bootstrap by hitting command -
+npm install bootstrap 
+
+import kra ani use kra evdhch ahe baki kahi nahi 
+
+
+///////////// EXAMPLE usign green color button using boostrap in react 
+
+ import "./App.css";
+
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
+function App() {
+  
+  return (
+    <div className="App">
+      <div className="btn btn-success"> Bootstap in react js </div>
+    </div>
+  );
+}
+export default App;
+
+
+------------------------------------  ACCORDION PROJECT IN REACT AND BOOTSTRAP 
+
+
+// api.js
+
+const data = [
+  {
+    id: 1,
+    q: "What is react dom ?",
+    a: "ReactDOM is a package that provides DOM specific methods that can be used at the top level of a web app to enable an efficient way of managing DOM elements of the web page. ReactDOM provides the developers with an API containing the following methods and a few more.",
+  },
+  {
+    id: 2,
+    q: "What is react ?",
+    a: "React is a JavaScript library developed by Facebook which, among other things, was used to build Instagram.com. Its aim is to allow developers to easily create fast user interfaces for websites and applications alike",
+  },
+  {
+    id: 3,
+    q: "What is bootstrap ?",
+    a: "Bootstrap is a free, open source front-end development framework for the creation of websites and web apps. Designed to enable responsive development of mobile-first websites, Bootstrap provides a collection of syntax for template designs.",
+  },
+  {
+    id: 4,
+    q: "What is css ?",
+    a: "Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML or XHTML). CSS describes how elements should be rendered on screen, on paper, in speech, or on other media.",
+  },
+];
+
+
+export default data;
+
+
+// Questions.js
+
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import { useState } from "react";
+
+function Questions({ q, a }) {
+  const [show, setShow] = new useState(false);
+  const [sign, setSign] = new useState("+");
+
+  return (
+    <>
+      <div className="qna ">
+        <div className="que border-5  bg-danger text-bg-dark rounded m-3 p-2 ">
+          <span>
+            <button
+              onClick={() => {
+                if (show) {
+                  setShow(false);
+                  setSign("+");
+                } else {
+                  setShow(true);
+                  setSign("-");
+                }
+              }}
+            >
+              {sign}
+            </button>
+          </span>
+          <span className="mb-3">{q}</span>
+          {show && <p className="ans bg-success text-bg-dark">{a}</p>}
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Questions;
+
+
+
+// App.js
+
+
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import data from "./api";
+import Questions from "./Questions";
+
+function App() {
+
+
+
+  return (
+    <div className="App text-center">
+      <div className="card m-lg-5 bg-light ">
+        <div className="card-header text-bg-primary">React Interview Questions</div>
+
+        <div className="card-body">
+          
+          { data.map( ( item )=>{
+            const {id} = item
+            return <Questions key={id}{...item} ></Questions>
+          })}
+        </div>
+
+      </div>
+    </div>
+  );
+}
+export default App;
+
+
+
+
+------------------------------------- UseEffect hook
+
+
+
+import { useEffect, useState } from 'react'
+import './app.css'
+
+
+
+function App() {
+
+
+  const [no1 , setNo1] = new useState(0);
+  const [no2, setNo2] = new useState(0);
+
+  // useeffect simply ek function ahe je thodi hi mahiti jari update zali website madhe kinva render zali tr han function call hoto apoaap. refresh zal tri call hoto 
+  // it takes a function as a first parameter always 
+  // useEffect( ()=> alert("button is clicked !!")  )
+
+  // empty array as second parameter pass kel tr fkt jevha suruvatila page refresh hoil tevha ekdach disel nantr nahi disnar 
+  // useEffect(() => alert("button is clicked !!") , [] );
+
+
+  // second parameter mdhe array madhe je state tumhi dyal fkt tech change kinva update zal tr to useeffect fucntion run hoil 
+  useEffect( ()=>{
+    alert( "button 1 is clicked !!" )
+  } , [ no1 ])
+
+
+
+  return (
+    <div className="App ">
+      <button
+        onClick={() => {
+          setNo1(no1 + 1);
+        }}
+      >
+        button 1  - {no1}
+      </button>
+
+      <button
+        onClick={() => {
+          setNo2(no2 + 1);
+        }}
+      >
+        button 2 - {no2}
+      </button>
+    </div>
+  );
+}
+
+export default App;
+
+
+---------------------------------------------------------- React ROUTER 
+
+
+react-router-dom search krlo google pr and then we have to install package 
+
+hit command in terminal -
+npm install react-router-dom@5
+
+ 
+* first of all head to the index.js file and import BrowserRouter 
+* replace <React.StrictMode> with <BrowserRouter>
+
+* jo bhi pages hai navbar me jo navigate krne hai wo sb import krlo app.js file me. 
+* import { Switch , Route } from 'react-router-dom';
+
+* then 
+
+<Switch></Switch> waprav lagat to switch between pages
+<Route></Route> path and component dyav lagat as attributes . path( browser search madhe kay type kelyavar component show hoil te ) string value ghet eg. '/Contact'. component( je path dilay tyanusar kont component show hoil tyasathi) eg. component={Contact}
+
+
+---- example bagha ata 
+
+// index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
+reportWebVitals();
+
+
+// About.js
+
+function About() {
+  return (
+    <>
+      <h1>About page</h1>
+    </>
+  );
+}
+export default About;
+
+
+// Contact.js
+
+function Contact(){
+    return(
+        <>
+            <h1>Contact page</h1>
+        </>
+    )
+}
+export default Contact;
+
+
+// App.js
+
+import "./App.css";
+import Contact from "./Contact";
+import About from "./About";
+
+import { Switch, Route } from "react-router-dom";
+
+function App() {
+  return (
+    <div className="App ">
+      <h1> HELLLOOOOO !!!! </h1>
+
+      <Switch>
+
+        {/* home page or App.js dikhane ke liye */}
+        <Route path="/" component={App}>
+
+          {/* baki sb pages isi App.js ke route me hone chahiye.
+           About.js dikhane ke liye  */}
+          <Route path="/about" component={About}></Route>
+
+          {/* Contact.js dikhane ke liye  */}
+          <Route path="/contact" component={Contact}></Route>
+
+        </Route>
+
+      </Switch>
+
+    </div>
+  );
+}
+
+export default App;
+
+
+---------------------------------------------- Navbar react router
+
+import "./App.css";
+import Contact from "./Contact";
+import About from "./About";
+import { Link , Switch , Route } from "react-router-dom";
+
+function App() {
+  return (
+    <div className="App ">
+
+
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/About">About us</Link>
+          </li>
+          <li>
+            <Link to="/Contact">Contact us</Link>
+          </li>
+        </ul>
+      </div>
+
+      <Switch>
+
+        <Route path="/">
+          <Route path="/About" component={About}></Route>
+          <Route path="/Contact" component={Contact}></Route>
+        </Route>
+
+      </Switch>
+
+    </div>
+  );
+}
+
+export default App;
+
+
+#######################
+
+*in App.js above just updated switch part 
+<Switch>
+
+    <Route path="/">
+
+        {/* if we wanted to pass props we have to use arrow fn and then using Component we can pass props */}
+        <Route path="/About" component={()=> <About age='100'/>}></Route>
+        <Route path="/Contact" component={Contact}></Route>
+
+    </Route>
+
+</Switch>
+
+
+*in About.js
+
+function About( props ) {
+  return (
+    <>
+      <h1>this is About page and my age is {props.age}</h1>
+    </>
+  );
+}
+export default About;
+
+#######################
+
+
+----------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
